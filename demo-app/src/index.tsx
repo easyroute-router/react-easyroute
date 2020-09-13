@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import MainLayout from "./Layout/MainLayout";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import router from "./Router/router";
+import { RouterOutlet } from "./react-easyroute";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <RouterOutlet router={router} />
   </React.StrictMode>,
   document.getElementById('root')
 );

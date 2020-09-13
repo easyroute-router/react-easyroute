@@ -20,6 +20,7 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "demo-app",
+    "lib/dist"
   ]
 }
