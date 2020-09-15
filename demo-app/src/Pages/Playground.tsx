@@ -1,6 +1,6 @@
 import React from "react";
 
-export function PlaygroundPage(props: any) {
+function PlaygroundPage(props: any) {
     const { param1, param2 } = props.currentRoute.params
     return <article>
         <h2>Playground</h2>
@@ -24,3 +24,5 @@ export function PlaygroundPage(props: any) {
         </div>
     </article>
 }
+
+export default PlaygroundPage

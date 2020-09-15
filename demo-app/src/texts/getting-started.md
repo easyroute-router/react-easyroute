@@ -31,6 +31,8 @@ const index = new Router({
 
 _I suggest you creating separated file for creating index instance._
 
+**IMPORTANT:** if you are using lazy-loading components, you should export them via `export default`!!!
+
 "mode" key allows you to specify the navigation mode:
 * "hash": based on everything that comes after the "#" sign in the URL (window.location.hash)
 * "history": based on [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)

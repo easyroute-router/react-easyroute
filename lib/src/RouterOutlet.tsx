@@ -72,15 +72,25 @@ class RouterOutlet extends Component<RouterOutletProps, any> {
         this.prevRouteId = currentRouteId
     }
 
+    private async getDynamicComponent(component: any): Promise<any> {
+        try {
+            const _component = await component()
+            return _component.hasOwnProperty('default') ? _component.default : null;
+
+        } catch (e) {
+            return null
+        }
+
+    }
+
     private matchedSubscribe = async (matchedRoutes: any[]) => {
         const currentRoute = matchedRoutes.find(route => route.nestingDepth === this.nestingDepth)
         if (currentRoute) {
-            const component = currentRoute.component
-            const isClassComponent = !!component.prototype?.render
+            const component = await this.getDynamicComponent(currentRoute.component) ?? currentRoute.component
+            const isClassComponent = !!component?.prototype?.render
             const Component = isClassComponent ? new component(this.componentProps) : component
             try {
-                // @TODO: lazy component loading
-                this.changeComponent(Component, isClassComponent, currentRoute.id)
+                await this.changeComponent(Component, isClassComponent, currentRoute.id)
             } catch (e) {
                 this.setState({
                     component: `[Easyroute] Error changing component: ${e.message}`

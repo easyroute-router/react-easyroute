@@ -1,10 +1,5 @@
 import Router from "../react-easyroute";
-import IndexPage from "../Pages/Index";
-import MainLayout from "../Layout/MainLayout";
-import {NotFound} from "../Pages/NotFound";
-import {MarkdownPage} from "../Pages/Markdown";
 import {fetchSlugMarkdown} from "./utils";
-import {PlaygroundPage} from "../Pages/Playground";
 import nProgress from "nprogress";
 
 const router = new Router({
@@ -12,34 +7,34 @@ const router = new Router({
     routes: [
         {
             path: '/',
-            component: MainLayout,
+            component: () => import(/* webpackChunkName: "main-layout" */ '../Layout/MainLayout'),
             children: [
                 {
                     path: '',
-                    component: IndexPage
+                    component: () => import(/* webpackChunkName: "index-page" */ '../Pages/Index')
                 },
                 {
                     name: 'Page',
                     path: 'page/:slug',
-                    component: MarkdownPage
+                    component: () => import(/* webpackChunkName: "markdown-page" */ '../Pages/Markdown')
                 },
                 {
                     path: 'playground/:param1/:param2',
-                    component: PlaygroundPage
+                    component: () => import(/* webpackChunkName: "playground" */ '../Pages/Playground')
                 },
                 {
                     path: '(.*)',
-                    component: NotFound
+                    component: () => import(/* webpackChunkName: "not-found" */ '../Pages/NotFound')
                 }
             ]
         },
         {
             path: '(.*)',
-            component: MainLayout,
+            component: () => import(/* webpackChunkName: "main-layout" */ '../Layout/MainLayout'),
             children: [
                 {
                     path: '(.*)',
-                    component: NotFound
+                    component: () => import(/* webpackChunkName: "not-found" */ '../Pages/NotFound')
                 }
             ]
         }

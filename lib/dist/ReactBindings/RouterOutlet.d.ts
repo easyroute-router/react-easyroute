@@ -27,6 +27,7 @@ declare class RouterOutlet extends Component<RouterOutletProps, any> {
         currentRoute: import("easyroute-core/lib/dist/Router/types").RouteObject;
     };
     changeComponent(Component: any, isClassComponent: boolean, currentRouteId: string): Promise<void>;
+    private getDynamicComponent;
     private matchedSubscribe;
     componentDidMount(): void;
     componentWillUnmount(): void;

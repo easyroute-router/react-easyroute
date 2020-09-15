@@ -18,4 +18,4 @@ function MarkdownPage(props: any) {
     return <article dangerouslySetInnerHTML={{__html: content}} />
 }
 
-export { MarkdownPage }
+export default MarkdownPage
