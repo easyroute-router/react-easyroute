@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {EasyrouteContextValue} from "./RouterOutlet";
 import {EasyrouteContext} from "./RouterOutlet";
-import Router from "..";
+import Router from "easyroute-core";
 
 interface RouterLinkProps {
     to: string
@@ -21,7 +21,8 @@ class RouterLink extends Component<RouterLinkProps, any> {
         if (!this.router) {
             throw new Error('[Easyroute] Router instance not found in RouterLink')
         }
-        this.router.navigate(this.props.to)
+        let resultPath = this.props.to[0] === '/' ? this.props.to : `/${this.props.to}`
+        this.router.navigate(resultPath)
     }
 
     render() {

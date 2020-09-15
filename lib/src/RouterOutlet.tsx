@@ -1,5 +1,5 @@
 import React, {Component, createContext} from "react";
-import Router from "..";
+import Router from "easyroute-core";
 
 export interface EasyrouteContextValue {
     router?: Router
@@ -12,9 +12,9 @@ const EasyrouteContext = createContext<EasyrouteContextValue>({
 })
 
 class RouterOutlet extends Component<any, any> {
-    private nestingDepth: number
-    private router: Router
-    private unsubscribe: any
+    private readonly nestingDepth: number
+    private readonly router: Router
+    private unsubscribe: () => void = () => null
 
     constructor(props: any, context: EasyrouteContextValue) {
         super(props, context);
@@ -26,7 +26,7 @@ class RouterOutlet extends Component<any, any> {
         component: ''
     }
 
-    matchedSubscribe(matchedRoutes: any[]) {
+    private matchedSubscribe = (matchedRoutes: any[]) => {
         const currentRoute = matchedRoutes.find(route => route.nestingDepth === this.nestingDepth)
         if (currentRoute) {
             const component = currentRoute.component
@@ -42,8 +42,7 @@ class RouterOutlet extends Component<any, any> {
     }
 
     componentDidMount() {
-        // this.matchedSubscribe(this.router.currentMatched.getValue)
-        this.unsubscribe = this.router.currentMatched.subscribe(this.matchedSubscribe.bind(this))
+        this.unsubscribe = this.router.currentMatched.subscribe(this.matchedSubscribe)
     }
 
     componentWillUnmount() {
