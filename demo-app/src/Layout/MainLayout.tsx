@@ -17,8 +17,8 @@ export default class MainLayout extends Component<any, any>{
                 <Container fluid className={'mt-4'}>
                     <Row>
                         <MainMenu />
-                        <Col md={9}>
-                            <RouterOutlet />
+                        <Col md={9} style={{ overflow: 'hidden' }}>
+                            <RouterOutlet transition={'fade'} forceRemount={true} />
                         </Col>
                     </Row>
                 </Container>

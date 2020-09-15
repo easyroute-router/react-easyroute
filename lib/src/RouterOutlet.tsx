@@ -1,5 +1,13 @@
 import React, {Component, createContext} from "react";
 import Router from "easyroute-core";
+// @ts-ignore @todo: create declaration file for utils
+import { getTransitionDurations, delay } from 'easyroute-core/lib/utils'
+
+interface RouterOutletProps {
+    router?: Router
+    transition?: string
+    forceRemount?: boolean
+}
 
 export interface EasyrouteContextValue {
     router?: Router
@@ -11,19 +19,26 @@ const EasyrouteContext = createContext<EasyrouteContextValue>({
     nestingDepth: 0
 })
 
-class RouterOutlet extends Component<any, any> {
+class RouterOutlet extends Component<RouterOutletProps, any> {
     private readonly nestingDepth: number
     private readonly router: Router
-    private unsubscribe: () => void = () => null
+    private readonly transitionData: any
+    private readonly forceRemount: boolean
 
-    constructor(props: any, context: EasyrouteContextValue) {
+    private unsubscribe: () => void = () => null
+    private prevRouteId = ''
+
+    constructor(props: RouterOutletProps, context: EasyrouteContextValue) {
         super(props, context);
         this.nestingDepth = this.context.nestingDepth
         this.router = this.context.router ?? this.props.router
+        this.forceRemount = props.forceRemount ?? false
+        this.transitionData = props.transition ? getTransitionDurations(props.transition) : null
     }
 
     state = {
-        component: ''
+        component: '',
+        transitionClassName: ''
     }
 
     get componentProps() {
@@ -33,15 +48,44 @@ class RouterOutlet extends Component<any, any> {
         }
     }
 
-    private matchedSubscribe = (matchedRoutes: any[]) => {
+    async changeComponent(Component: any, isClassComponent: boolean, currentRouteId: string) {
+        if (this.prevRouteId === currentRouteId && !this.forceRemount) return
+        const transition = this.props.transition
+        if (!this.transitionData) {
+            this.setState({
+                component: isClassComponent ? Component.render() : <Component {...this.componentProps} />
+            })
+        } else {
+            this.setState({ transitionClassName: `${transition}-leave-active ${transition}-leave-to` })
+            await delay(this.transitionData.leavingDuration + 10)
+            this.setState({ transitionClassName: `${transition}-leave-active ${transition}-leave-to ${transition}-leave` })
+            await delay(5)
+            this.setState({ transitionClassName: `${transition}-enter` })
+            this.setState({ transitionClassName: `${transition}-enter-active` })
+            this.setState({
+                component: isClassComponent ? Component.render() : <Component {...this.componentProps} />
+            })
+            this.setState({ transitionClassName: `${transition}-enter-active ${transition}-enter-to` })
+            await delay(this.transitionData.enteringDuration + 10)
+            this.setState({ transitionClassName: '' })
+        }
+        this.prevRouteId = currentRouteId
+    }
+
+    private matchedSubscribe = async (matchedRoutes: any[]) => {
         const currentRoute = matchedRoutes.find(route => route.nestingDepth === this.nestingDepth)
         if (currentRoute) {
             const component = currentRoute.component
             const isClassComponent = !!component.prototype?.render
             const Component = isClassComponent ? new component(this.componentProps) : component
-            this.setState({
-                component: isClassComponent ? Component.render() : <Component {...this.componentProps} />
-            })
+            try {
+                // @TODO: lazy component loading
+                this.changeComponent(Component, isClassComponent, currentRoute.id)
+            } catch (e) {
+                this.setState({
+                    component: `[Easyroute] Error changing component: ${e.message}`
+                })
+            }
         } else {
             this.setState({
                 component: ''
@@ -60,7 +104,9 @@ class RouterOutlet extends Component<any, any> {
     render() {
         return (
             <EasyrouteContext.Provider value={{ router: this.router, nestingDepth: this.nestingDepth + 1 }}>
-                { this.state.component }
+                <div className={`easyroute-outlet${ this.state.transitionClassName ? ' '+this.state.transitionClassName : '' }`}>
+                    { this.state.component }
+                </div>
             </EasyrouteContext.Provider>
         );
     }
