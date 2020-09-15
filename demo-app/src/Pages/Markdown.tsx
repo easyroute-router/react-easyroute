@@ -6,7 +6,7 @@ function MarkdownPage(props: any) {
 
     useEffect(() => {
         getPageContent()
-    }, [props.currentRoute.params.slug])
+    }, [props])
 
     const md = new MarkdownIt()
 
@@ -14,7 +14,8 @@ function MarkdownPage(props: any) {
         const content = props?.currentRoute?.meta?.pageText ?? 'loading...'
         setContent(md.render(content))
     }
-    return <div dangerouslySetInnerHTML={{__html: content}} />
+
+    return <article dangerouslySetInnerHTML={{__html: content}} />
 }
 
 export { MarkdownPage }

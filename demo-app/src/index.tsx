@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './assets/index.css';
 import * as serviceWorker from './serviceWorker';
-import MainLayout from "./Layout/MainLayout";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import router from "./Router/router";
+import 'nprogress/nprogress.css'
+import router from "./Router";
 import { RouterOutlet } from "./react-easyroute";
 
 ReactDOM.render(

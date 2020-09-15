@@ -1,16 +1,18 @@
-import React, { Component } from "react";
-import { Navbar, NavbarBrand, Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
+import React from "react";
+import { Navbar, Container, Row, Col } from 'reactstrap'
 import { RouterLink, RouterOutlet } from "../react-easyroute/";
 import MainMenu from "../Components/MainMenu";
+import logo from '../assets/logo.png'
 
-export default class MainLayout extends Component<any, any>{
-    render() {
-        return (
-            <div className={'main-layout'}>
+const MainLayout = () => {
+    return <div className={'main-layout'}>
                 <header>
                     <Navbar color={'light'} light expand={'md'}>
                         <RouterLink to={'/'}>
-                            <NavbarBrand>React Easyroute</NavbarBrand>
+                            <img style={{ width: '25rem', padding: '10px 0' }}
+                                 className={'logo'} src={logo}
+                                 alt={'React Easyroute logo'}
+                            />
                         </RouterLink>
                     </Navbar>
                 </header>
@@ -23,6 +25,14 @@ export default class MainLayout extends Component<any, any>{
                     </Row>
                 </Container>
             </div>
-        );
-    }
 }
+
+export default MainLayout
+
+// export default class MainLayout extends Component<any, any>{
+//     render() {
+//         return (
+
+//         );
+//     }
+// }

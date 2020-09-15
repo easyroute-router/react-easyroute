@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 export function PlaygroundPage(props: any) {
     const { param1, param2 } = props.currentRoute.params

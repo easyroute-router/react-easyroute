@@ -3,8 +3,7 @@
 Using CSS transitions in Easyroute is pretty easy, 
 especially if you worked with Vue.js 
 before. For example, let's create "fade" transition. 
-First of all, in a GLOBAL css file (note: you **NEED** 
-to use a **globally included CSS file**) create the 
+First of all create the 
 following classes:
 
 ```css

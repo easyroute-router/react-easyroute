@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+a {
+  color: black!important;
+}
+
+a:hover {
+  text-decoration: none!important;
+}
+
 .fade-leave-active,
 .fade-enter-active {
   transition: opacity .2s, transform .2s;

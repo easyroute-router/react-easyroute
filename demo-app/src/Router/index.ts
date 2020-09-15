@@ -5,9 +5,10 @@ import {NotFound} from "../Pages/NotFound";
 import {MarkdownPage} from "../Pages/Markdown";
 import {fetchSlugMarkdown} from "./utils";
 import {PlaygroundPage} from "../Pages/Playground";
+import nProgress from "nprogress";
 
 const router = new Router({
-    mode: 'hash',
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -46,6 +47,7 @@ const router = new Router({
 })
 
 router.beforeEach = async (to, from, next) => {
+    nProgress.start()
     if (to.name === 'Page') {
         console.log(`[BeforeEachHook]: fetching page data`)
         const { slug } = to.params
@@ -67,6 +69,10 @@ router.beforeEach = async (to, from, next) => {
             : 'React Easyroute'
         next()
     }
+}
+
+router.afterEach = () => {
+    nProgress.done()
 }
 
 export default router
