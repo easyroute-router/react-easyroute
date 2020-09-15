@@ -23,6 +23,9 @@ const router = new Router({
                     component: () => import(/* webpackChunkName: "playground" */ '../Pages/Playground')
                 },
                 {
+                    meta: {
+                        title: 'Playground'
+                    },
                     path: '(.*)',
                     component: () => import(/* webpackChunkName: "not-found" */ '../Pages/NotFound')
                 }
