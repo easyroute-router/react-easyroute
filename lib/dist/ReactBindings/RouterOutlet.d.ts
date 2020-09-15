@@ -13,6 +13,10 @@ declare class RouterOutlet extends Component<any, any> {
     state: {
         component: string;
     };
+    get componentProps(): {
+        router: Router;
+        currentRoute: import("easyroute-core/lib/dist/Router/types").RouteObject;
+    };
     private matchedSubscribe;
     componentDidMount(): void;
     componentWillUnmount(): void;

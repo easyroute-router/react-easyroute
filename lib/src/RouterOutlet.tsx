@@ -26,13 +26,21 @@ class RouterOutlet extends Component<any, any> {
         component: ''
     }
 
+    get componentProps() {
+        return {
+            router: this.router,
+            currentRoute: this.router.currentRoute
+        }
+    }
+
     private matchedSubscribe = (matchedRoutes: any[]) => {
         const currentRoute = matchedRoutes.find(route => route.nestingDepth === this.nestingDepth)
         if (currentRoute) {
             const component = currentRoute.component
-            const Component = new component()
+            const isClassComponent = !!component.prototype?.render
+            const Component = isClassComponent ? new component(this.componentProps) : component
             this.setState({
-                component: Component.render ? Component.render() : component()
+                component: isClassComponent ? Component.render() : <Component {...this.componentProps} />
             })
         } else {
             this.setState({
