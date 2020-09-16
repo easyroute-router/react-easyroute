@@ -26,7 +26,8 @@
     "build:app": "node scripts/build.js",
     "test": "jest",
     "dev:router": "tsc --project tsconfig.router.json --watch",
-    "build:router": "tsc --project tsconfig.router.json"
+    "build:router": "tsc --project tsconfig.router.json",
+    "lint": "eslint './demo-app/src/**/*.{ts,tsx}' --quiet --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -119,11 +120,13 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "3.0.3",
     "eslint-plugin-flowtype": "4.6.0",
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "file-loader": "4.3.0",
@@ -146,6 +149,7 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
+    "prettier": "^2.1.2",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
@@ -169,7 +173,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test ",
+      "pre-commit": "npm run lint && npm run test",
       "post-commit": "git update-index --again"
     }
   }

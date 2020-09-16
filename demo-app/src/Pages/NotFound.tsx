@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from 'react'
 
-function NotFound(props: any) {
-    return <h1>404 Not Found</h1>
+function NotFound(): ReactElement {
+  return <h1>404 Not Found</h1>
 }
 
 export default NotFound

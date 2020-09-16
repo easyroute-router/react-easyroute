@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from "react";
-import MarkdownIt from "markdown-it";
+import React, { ReactElement, useEffect, useState } from 'react'
+import MarkdownIt from 'markdown-it'
 
-function MarkdownPage(props: any) {
-    let [content, setContent] = useState('')
+function MarkdownPage(props: any): ReactElement {
+  const [content, setContent] = useState('')
 
-    useEffect(() => {
-        getPageContent()
-    }, [props])
+  const md = new MarkdownIt()
 
-    const md = new MarkdownIt()
+  const getPageContent = async (): Promise<void> => {
+    const content = props?.currentRoute?.meta?.pageText ?? 'loading...'
+    setContent(md.render(content))
+  }
 
-    const getPageContent = async () => {
-        const content = props?.currentRoute?.meta?.pageText ?? 'loading...'
-        setContent(md.render(content))
-    }
+  useEffect(() => {
+    getPageContent()
+  }, [props])
 
-    return <article dangerouslySetInnerHTML={{__html: content}} />
+  return <article dangerouslySetInnerHTML={{ __html: content }} />
 }
 
 export default MarkdownPage

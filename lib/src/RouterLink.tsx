@@ -16,7 +16,7 @@ class RouterLink extends Component<RouterLinkProps, any> {
         this.router = this.context.router
     }
 
-    private routerNavigate(evt: any) {
+    private routerNavigate(evt: any): void {
         evt.preventDefault()
         evt.stopPropagation()
         if (!this.router) {
@@ -26,14 +26,17 @@ class RouterLink extends Component<RouterLinkProps, any> {
         this.router.navigate(resultPath)
     }
 
-    get className() {
+    get className(): string {
         const { className } = this.props
         return className ? ' ' + className : ''
     }
 
     render() {
         return (
-            <a className={`router-link${ this.className }`} href={this.props.to} onClick={(evt) => this.routerNavigate(evt)}>
+            <a className={`router-link${ this.className }`}
+               href={this.props.to}
+               onClick={(evt) => this.routerNavigate(evt)}
+            >
                 { this.props.children }
             </a>
         )
