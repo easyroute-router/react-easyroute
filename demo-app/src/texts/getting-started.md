@@ -1,13 +1,13 @@
 ## Getting started
 
-#### Creating a index
-To create a index, open your main file (f.e. "index.jsx") and add the following code:
+#### Creating a router
+To create a router, open your main file (f.e. "index.jsx") and add the following code:
 ```javascript
 import Router from 'react-easyroute'
 import Index from './IndexPage.jsx'
 import About from './About.jsx'
 
-const index = new Router({
+const router = new Router({
     mode: "hash", // "hash" or "history"
     routes:[
         {
@@ -29,7 +29,7 @@ const index = new Router({
 })
 ```
 
-_I suggest you creating separated file for creating index instance._
+_I suggest you creating separated file for router instance._
 
 **IMPORTANT:** if you are using lazy-loading components, you should export them via `export default`!!!
 
@@ -41,9 +41,9 @@ _I suggest you creating separated file for creating index instance._
 "routes" key is array of registered routes. In the example above we defined two routes. Link `//yoursite.com/#/` will lead to Index component, and link `//yoursite.com/#/about/me` - to About component.
 
 #### Last step
-If you will try to launch your app after creating index 
+If you will try to launch your app after creating router 
 instance you will see errors in console. This happening 
-because there is no outlet - a container for index 
+because there is no outlet - a container for router 
 components. To create one, open your main component 
 (f.e. "index.jsx") and add this:
 
@@ -52,10 +52,10 @@ import { RouterOutlet } from "react-easyroute";
 // ...
 ReactDOM.render(
   <React.StrictMode>
-      <RouterOutlet index={index} />
+      <RouterOutlet router={router} />
   </React.StrictMode>,
   document.getElementById('root')
 );
 ```
-Make sure you passed index instance as a prop to first `RouterOutlet`.
+Make sure you passed router instance as a prop to first `RouterOutlet`.
 In nested routes it is not necessary. 

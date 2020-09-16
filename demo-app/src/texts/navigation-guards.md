@@ -1,20 +1,20 @@
 ## Navigation guards
 
-f you want to do something before component is 
-changed by index, you can add navigation guards.
+If you want to do something before component is 
+changed by router, you can add navigation guards.
 
 For now there are two navigation 
 hooks: beforeEach and afterEach.
 
 You can specify them like that: 
 ```javascript
-index.beforeEach = (to,from,next) => {
+router.beforeEach = (to,from,next) => {
 	console.log(to.fullPath)
 	console.log(from.fullPath)
 	next()
 }
 
-index.afterEach = (to,from) => {
+router.afterEach = (to,from) => {
 	console.log('We are on new page!')
 }
 ```

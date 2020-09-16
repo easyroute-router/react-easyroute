@@ -1,6 +1,8 @@
 {
   "name": "react-easyroute",
+  "description": "Config-based router for React in style of Vue Router",
   "version": "0.1.0",
+  "main": "lib/dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lyohaplotinka/react-easyroute.git"
