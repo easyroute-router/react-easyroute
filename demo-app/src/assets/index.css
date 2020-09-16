@@ -39,6 +39,24 @@ img.logo {
   max-width: 95%;
 }
 
+a.github-button {
+  opacity: 0;
+}
+
+.github-button-block {
+  align-self: center;
+}
+
+.github-button-block > span {
+  margin-right: 1rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.github-button-block > span.version-info {
+  opacity: 0.5;
+}
+
 h1,h2,h3,h4,h5 {
   margin-top: 1rem!important;
   margin-bottom: 1rem!important;
