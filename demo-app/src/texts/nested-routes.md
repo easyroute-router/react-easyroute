@@ -31,6 +31,6 @@ function IndexComponent(props) {
     </div>
 }
 ```
-No props required here. Now you will see both rendered
+Now you will see both rendered
 components on the screen.
 

@@ -10,7 +10,7 @@ import { EasyrouteProvider, RouterOutlet } from './react-easyroute'
 ReactDOM.render(
   <React.StrictMode>
     <EasyrouteProvider router={router}>
-      <RouterOutlet router={router} />
+      <RouterOutlet />
     </EasyrouteProvider>
   </React.StrictMode>,
   document.getElementById('root')

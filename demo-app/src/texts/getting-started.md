@@ -3,6 +3,8 @@
 #### Creating a router
 To create a router, open your main file (f.e. "index.jsx") and add the following code:
 ```javascript
+// ./router.js
+
 import Router from 'react-easyroute'
 import Index from './IndexPage.jsx'
 import About from './About.jsx'
@@ -40,22 +42,42 @@ _I suggest you creating separated file for router instance._
 #### Adding routes
 "routes" key is array of registered routes. In the example above we defined two routes. Link `//yoursite.com/#/` will lead to Index component, and link `//yoursite.com/#/about/me` - to About component.
 
-#### Last step
-If you will try to launch your app after creating router 
-instance you will see errors in console. This happening 
-because there is no outlet - a container for router 
-components. To create one, open your main component 
-(f.e. "index.jsx") and add this:
+#### Next step
+In your root component you should put `EasyrouteProvider` component. 
+It will create special context for links and outlet. Pass the 
+router instance from previous step as `router` prop.
 
-```javascript
-import { RouterOutlet } from "react-easyroute";
+```jsx
+// ./index.js
+import { EasyrouteProvider } from "react-easyroute";
+import router from './router'
+
 // ...
 ReactDOM.render(
   <React.StrictMode>
-      <RouterOutlet router={router} />
+      <EasyrouteProvider router={router}>
+          <App />
+      </EasyrouteProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
 ```
-Make sure you passed router instance as a prop to first `RouterOutlet`.
-In nested routes it is not necessary. 
+
+#### Last step
+If you will try to launch your app 
+you will see errors in console. This happening 
+because there is no outlet - a container for router 
+components. To create one, open your main component 
+(f.e. "App.jsx") and add this:
+
+```javascript
+import { RouterOutlet } from "react-easyroute";
+
+function App(props) {
+  return <div className="app">
+    ...
+    <RouterOutlet />
+    ...
+  </div>
+}
+```

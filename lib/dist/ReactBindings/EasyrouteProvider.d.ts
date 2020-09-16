@@ -1,3 +1,8 @@
 import { ReactElement } from 'react'
-declare function EasyrouteProvider(props: any): ReactElement
+import Router from 'easyroute-core/lib/dist'
+interface EasyrouteProviderProps {
+  router: Router
+  children?: ReactElement
+}
+declare function EasyrouteProvider(props: EasyrouteProviderProps): ReactElement
 export { EasyrouteProvider }
