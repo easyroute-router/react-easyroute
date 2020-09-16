@@ -5,11 +5,13 @@ import * as serviceWorker from './serviceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'nprogress/nprogress.css'
 import router from './Router'
-import { RouterOutlet } from './react-easyroute'
+import { RouterOutlet, EasyrouteContext } from './react-easyroute'
 
 ReactDOM.render(
   <React.StrictMode>
-    <RouterOutlet router={router} />
+    <EasyrouteContext.Provider value={{ router, nestingDepth: 0 }}>
+      <RouterOutlet router={router} />
+    </EasyrouteContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

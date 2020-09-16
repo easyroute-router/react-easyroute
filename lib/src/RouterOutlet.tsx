@@ -12,7 +12,7 @@ interface RouterOutletProps {
 
 export interface EasyrouteContextValue {
   router?: Router
-  nestingDepth: number
+  nestingDepth?: number
 }
 
 const EasyrouteContext = createContext<EasyrouteContextValue>({

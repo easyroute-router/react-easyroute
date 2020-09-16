@@ -8,7 +8,7 @@ interface RouterOutletProps {
 }
 export interface EasyrouteContextValue {
   router?: Router
-  nestingDepth: number
+  nestingDepth?: number
 }
 declare const EasyrouteContext: React.Context<EasyrouteContextValue>
 declare class RouterOutlet extends Component<RouterOutletProps, any> {
