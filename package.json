@@ -27,7 +27,8 @@
     "test": "jest",
     "dev:router": "tsc --project tsconfig.router.json --watch",
     "build:router": "tsc --project tsconfig.router.json",
-    "lint": "eslint './demo-app/src/**/*.{ts,tsx}' --quiet --fix"
+    "lint:app": "eslint './demo-app/src/**/*.{ts,tsx}' --quiet --fix",
+    "lint:router": "eslint ./lib/src/**/*.{ts,tsx} --quiet --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -173,8 +174,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test",
-      "post-commit": "git update-index --again"
+      "pre-commit": "npm run lint:app && npm run lint:router && git update-index --again",
+      "pre-push": "npm run test"
     }
   }
 }
