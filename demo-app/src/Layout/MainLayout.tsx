@@ -9,8 +9,7 @@ const MainLayout = () => {
                 <header>
                     <Navbar color={'light'} light expand={'md'}>
                         <RouterLink className={'top-header'} to={'/'}>
-                            <img style={{ width: '25rem', padding: '10px 0' }}
-                                 className={'logo'} src={logo}
+                            <img className={'logo'} src={logo}
                                  alt={'React Easyroute logo'}
                             />
                         </RouterLink>

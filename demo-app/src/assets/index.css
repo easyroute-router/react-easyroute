@@ -33,6 +33,12 @@ a:hover {
   text-decoration: none!important;
 }
 
+img.logo {
+  width: 25rem;
+  padding: 10px 0;
+  max-width: 95%;
+}
+
 h1,h2,h3,h4,h5 {
   margin-top: 1rem!important;
   margin-bottom: 1rem!important;
