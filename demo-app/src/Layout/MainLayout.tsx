@@ -8,7 +8,7 @@ const MainLayout = () => {
     return <div className={'main-layout'}>
                 <header>
                     <Navbar color={'light'} light expand={'md'}>
-                        <RouterLink to={'/'}>
+                        <RouterLink className={'top-header'} to={'/'}>
                             <img style={{ width: '25rem', padding: '10px 0' }}
                                  className={'logo'} src={logo}
                                  alt={'React Easyroute logo'}

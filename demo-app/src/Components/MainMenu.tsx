@@ -7,7 +7,7 @@ export default class MainMenu extends Component<any, any> {
         return (
             <Col md={3}>
                 <ListGroup>
-                    <ListGroupItem action>
+                    <ListGroupItem action tag={'div'}>
                         <RouterLink to={'/page/installation'}>Installation</RouterLink>
                     </ListGroupItem>
                     <ListGroupItem action>

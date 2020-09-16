@@ -7,6 +7,7 @@ interface RouterOutletProps {
     router?: Router
     transition?: string
     forceRemount?: boolean
+    className?: string
 }
 
 export interface EasyrouteContextValue {
@@ -111,10 +112,15 @@ class RouterOutlet extends Component<RouterOutletProps, any> {
         this.unsubscribe()
     }
 
+    get className() {
+        const { className } = this.props
+        return className ? ' ' + className : ''
+    }
+
     render() {
         return (
             <EasyrouteContext.Provider value={{ router: this.router, nestingDepth: this.nestingDepth + 1 }}>
-                <div className={`easyroute-outlet${ this.state.transitionClassName ? ' '+this.state.transitionClassName : '' }`}>
+                <div className={`easyroute-outlet${ this.className }${ this.state.transitionClassName ? ' '+this.state.transitionClassName : '' }`}>
                     { this.state.component }
                 </div>
             </EasyrouteContext.Provider>

@@ -22,8 +22,8 @@
     "easyroute-core": "^1.0.1"
   },
   "scripts": {
-    "dev": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "dev:app": "node scripts/start.js",
+    "build:app": "node scripts/build.js",
     "test": "jest",
     "dev:router": "tsc --project tsconfig.router.json --watch",
     "build:router": "tsc --project tsconfig.router.json"

@@ -5,6 +5,7 @@ import Router from "easyroute-core";
 
 interface RouterLinkProps {
     to: string
+    className?: string
 }
 
 class RouterLink extends Component<RouterLinkProps, any> {
@@ -25,9 +26,14 @@ class RouterLink extends Component<RouterLinkProps, any> {
         this.router.navigate(resultPath)
     }
 
+    get className() {
+        const { className } = this.props
+        return className ? ' ' + className : ''
+    }
+
     render() {
         return (
-            <a href={this.props.to} onClick={(evt) => this.routerNavigate(evt)}>
+            <a className={`router-link${ this.className }`} href={this.props.to} onClick={(evt) => this.routerNavigate(evt)}>
                 { this.props.children }
             </a>
         )
