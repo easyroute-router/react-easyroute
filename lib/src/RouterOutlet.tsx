@@ -36,7 +36,7 @@ class RouterOutlet extends Component<RouterOutletProps, any> {
 
   constructor(props: RouterOutletProps, context: EasyrouteContextValue) {
     super(props, context)
-    this.nestingDepth = this.context.nestingDepth
+    this.nestingDepth = this.context.nestingDepth ?? 0
     this.router = this.context.router ?? this.props.router
     this.forceRemount = props.forceRemount ?? false
     this.transitionData = props.transition ? getTransitionDurations(props.transition) : null
