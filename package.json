@@ -30,7 +30,7 @@
     "dev:router": "tsc --project tsconfig.router.json --watch",
     "build:router": "tsc --project tsconfig.router.json",
     "lint:app": "eslint './demo-app/src/**/*.{ts,tsx}' --quiet --fix",
-    "lint:router": "eslint ./lib/src/**/*.{ts,tsx} --quiet --fix"
+    "lint:router": "eslint ./lib/src/**/*.tsx --quiet --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
