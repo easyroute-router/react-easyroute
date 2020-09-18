@@ -20,6 +20,9 @@ TL;DR Features:
 * Hash, history and silent modes
 * CSS transitions
 
+### Looking for demo? 
+Try [this code sandbox](https://codesandbox.io/s/react-easyroute-simpliest-demo-pfsez?file=/src/index.js)
+
 Why you should try it? 
 
 >**1. Well-known syntax**  
