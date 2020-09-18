@@ -23,7 +23,7 @@ TL;DR Features:
 ### Looking for demo? 
 Try [this code sandbox](https://codesandbox.io/s/react-easyroute-simpliest-demo-pfsez?file=/src/index.js)
 
-Why you should try it? 
+### Why you should try it? 
 
 >**1. Well-known syntax**  
 >It was inspired by the router for Vue.js, so this router will be understandable to many of you.
@@ -34,7 +34,7 @@ Why you should try it?
 >**3. Community-friendly**  
 >Repository cloning and pull requests are welcome!
 
-## How to use?
+### How to use?
 
 Please see [DOCUMENTATION](https://react-easyroute.lyoha.info). Router is still developing and new features are coming out frequently.
 
