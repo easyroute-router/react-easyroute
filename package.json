@@ -21,7 +21,7 @@
   "author": "Lyoha Plotinka",
   "license": "MIT",
   "dependencies": {
-    "easyroute-core": "^1.0.1"
+    "easyroute-core": "1.0.2"
   },
   "scripts": {
     "dev:app": "node scripts/start.js",

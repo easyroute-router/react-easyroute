@@ -25,7 +25,7 @@ declare class RouterOutlet extends Component<RouterOutletProps, any> {
   constructor(props: RouterOutletProps, context: EasyrouteContextValue)
   get componentProps(): {
     router: Router
-    currentRoute: import('easyroute-core/lib/dist/Router/types').RouteObject
+    currentRoute: import('easyroute-core/lib/dist/types').RouteObject
   }
   get transitionClassName(): string
   set transitionClassName(value: string)
@@ -34,7 +34,6 @@ declare class RouterOutlet extends Component<RouterOutletProps, any> {
   get currentComponent(): any
   set currentComponent(component: any)
   changeComponent(Component: any, isClassComponent: boolean, currentRouteId: string): Promise<void>
-  private getDynamicComponent
   private matchedSubscribe
   componentDidMount(): void
   componentWillUnmount(): void
