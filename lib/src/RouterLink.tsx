@@ -1,45 +1,23 @@
-import React, { Component } from 'react'
-import { EasyrouteContextValue } from './RouterOutlet'
+import React, { PropsWithChildren, useContext } from 'react'
 import { EasyrouteContext } from './RouterOutlet'
-import Router from 'easyroute-core'
+import { RouterLinkProps } from './types'
 
-interface RouterLinkProps {
-  to: string
-  className?: string
-}
-
-class RouterLink extends Component<RouterLinkProps, any> {
-  private readonly router: Router
-
-  constructor(props: RouterLinkProps, context: EasyrouteContextValue) {
-    super(props, context)
-    this.router = this.context.router
-  }
-
-  private routerNavigate(evt: any): void {
+const RouterLink: React.FC<RouterLinkProps> = (props: PropsWithChildren<RouterLinkProps>) => {
+  const { router } = useContext(EasyrouteContext)
+  const className = props.className ? ' ' + props.className : ''
+  const routerNavigate = (evt: React.MouseEvent): void => {
     evt.preventDefault()
     evt.stopPropagation()
-    if (!this.router) {
-      throw new Error('[Easyroute] Router instance not found in RouterLink')
-    }
-    const resultPath = this.props.to[0] === '/' ? this.props.to : `/${this.props.to}`
-    this.router.navigate(resultPath)
+    if (!router) throw new Error('[Easyroute] Router instance not found in RouterLink')
+    const resultPath = props.to[0] === '/' ? props.to : `/${props.to}`
+    router.push(resultPath)
   }
 
-  get className(): string {
-    const { className } = this.props
-    return className ? ' ' + className : ''
-  }
-
-  render() {
-    return (
-      <a className={`router-link${this.className}`} href={this.props.to} onClick={(evt) => this.routerNavigate(evt)}>
-        {this.props.children}
-      </a>
-    )
-  }
+  return (
+    <a className={`router-link${className}`} href={props.to} onClick={(evt) => routerNavigate(evt)}>
+      {props.children}
+    </a>
+  )
 }
-
-RouterLink.contextType = EasyrouteContext
 
 export { RouterLink }

@@ -1,14 +1,13 @@
-import React, { ReactElement } from 'react'
-import { EasyrouteContext } from './RouterOutlet'
-import Router from 'easyroute-core/lib/dist'
+import React, { createContext, ReactElement } from 'react'
+import { EasyrouteProviderProps, EasyrouteContextValue } from './types'
 
-interface EasyrouteProviderProps {
-  router: Router
-  children?: ReactElement
-}
+const EasyrouteContext = createContext<EasyrouteContextValue>({
+  router: undefined,
+  nestingDepth: 0
+})
 
 function EasyrouteProvider(props: EasyrouteProviderProps): ReactElement {
   return <EasyrouteContext.Provider value={{ router: props.router, nestingDepth: 0 }} {...props} />
 }
 
-export { EasyrouteProvider }
+export { EasyrouteProvider, EasyrouteContext }

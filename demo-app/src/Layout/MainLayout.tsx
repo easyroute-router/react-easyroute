@@ -12,7 +12,7 @@ const MainLayout = (): React.ReactElement => {
     script.src = 'https://buttons.github.io/buttons.js'
     script.defer = true
     document.body.append(script)
-  })
+  }, [])
   return (
     <div className={'main-layout'}>
       <header>
